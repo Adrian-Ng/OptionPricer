@@ -27,10 +27,10 @@ Interface: PricingType.java
     double getPut();
     
 We have two abstract classes. And these each have two subclasses to accommodate the various ways of computing payoff
-  -MonteCarlo.java
+  - MonteCarlo.java
     - European payoff
     - Asian payoff
-  -BinomialTree.java
+  - BinomialTree.java
     - European put payoff
     - American put payoff
   
