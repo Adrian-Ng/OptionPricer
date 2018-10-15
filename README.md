@@ -5,13 +5,14 @@ We have two .txt files
 
 input.txt
   Handles the testing parameters
-    Stock price
-    Strike price
-    interest rate
-    volatility
-    timehorizon
+    - Stock price
+    - Strike price
+    - interest rate
+    - volatility
+    - timehorizon
 
 pricingtypes.txt
+
   This is a list of the different methods of computing option prices:
   AmericanTree
   AsianMonteCarlo
@@ -22,9 +23,10 @@ pricingtypes.txt
   This list is fed into PricingFactory.java so that the right Class is initialized.
 
 Interface: PricingType.java
+
   This has two methods:
-    double getCall();
-    double getPut();
+    - double getCall();
+    - double getPut();
     
 We have two abstract classes. And these each have two subclasses to accommodate the various ways of computing payoff
   - MonteCarlo.java
