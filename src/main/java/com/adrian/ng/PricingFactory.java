@@ -22,7 +22,7 @@ public class PricingFactory {
         if(type.equals("AmericanTree"))
             return new AmericanTree(hashMap);
 
-        if(type.equals("Asian"))
+        if(type.equals("AsianMonteCarlo"))
             return new Asian(hashMap);
 
         if(type.equals("EuropeanMonteCarlo"))

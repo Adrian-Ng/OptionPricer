@@ -1,5 +1,5 @@
 AmericanTree
-Asian
+AsianMonteCarlo
 EuropeanTree
 EuropeanMonteCarlo
 BlackScholes
