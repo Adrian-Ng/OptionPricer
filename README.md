@@ -7,11 +7,11 @@ input.txt
 
   Handles the testing parameters:
   
-    - Stock price
-    - Strike price
-    - interest rate
-    - volatility
-    - timehorizon
+- stock,115
+- strike,120
+- volatility,0.3
+- interest,0.15
+- timehorizon,0.5
 
 pricingtypes.txt
 
