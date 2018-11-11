@@ -19,19 +19,19 @@ public class PricingFactory {
         if(type == null)
             return null;
 
-        if(type.equals("AmericanTree"))
+        if(type.equals("American Binomial Tree"))
             return new AmericanTree(hashMap);
 
-        if(type.equals("AsianMonteCarlo"))
+        if(type.equals("Asian Monte Carlo"))
             return new Asian(hashMap);
 
-        if(type.equals("EuropeanMonteCarlo"))
+        if(type.equals("European Monte Carlo"))
             return new EuropeanMonteCarlo(hashMap);
 
-        if(type.equals("EuropeanTree"))
+        if(type.equals("European Binomial Tree"))
             return new EuropeanTree(hashMap);
 
-        if(type.equals("BlackScholes"))
+        if(type.equals("Black Scholes"))
             return new BlackScholes(hashMap);
 
         return null;

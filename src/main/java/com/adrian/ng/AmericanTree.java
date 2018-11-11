@@ -24,6 +24,4 @@ public class AmericanTree extends BinomialTree {
                 optionPrice[j][i] = Math.max(Math.exp(-interest*dt)*((p*optionPrice[j][i+1])+(1-p)*optionPrice[j+1][i+1]),strike-stockPrice[j][i]);
         return optionPrice[0][0];
     }
-
-
 }

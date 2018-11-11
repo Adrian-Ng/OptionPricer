@@ -24,7 +24,7 @@ public abstract class BinomialTree implements PricingType{
         double u = Math.exp(volatility*Math.sqrt(dt));           // stock price increase
         double d = Math.exp(-volatility*Math.sqrt(dt));          // stock price decrease
         stockPrice = stockPrices(stock, u, d, T);
-        p = (Math.exp(interest*dt)-d)/(u-d);                // 0.4975
+        p = (Math.exp(interest*dt)-d)/(u-d);
     }
 
     private double[][] stockPrices(double S0, double u, double d, int T) {
@@ -40,7 +40,7 @@ public abstract class BinomialTree implements PricingType{
         return stockPrice;
     }
 
-    public double setCall(double[][] stockPrice, double strike, double interest, double p, double dt, int T){
+    private double setCall(double[][] stockPrice, double strike, double interest, double p, double dt, int T){
         double[][] optionPrice = new double[T][T];
         //compute option prices at maturity
         for (int i = 0; i < T; i++)
@@ -61,5 +61,5 @@ public abstract class BinomialTree implements PricingType{
     public double getPut(){
         double fPut = setPut(stockPrice, strike, interest, p, dt, T);
         return fPut;
-    };
+    }
 }

@@ -28,22 +28,23 @@ public abstract class MonteCarlo implements PricingType {
         double dt = timeHorizon/N;                          // size of the step where each step is 1 day
         for (int i = 0; i < paths ; i ++) {
             // Return final projected Stock Price St = stock at time t
-            double St = simuluatePath(N, stock, dt, interest, volatility);
+            double St = simulateRandomWalk(N, stock, dt, interest, volatility);
             CallPayoff += Math.max(St-strike,0);
             PutPayoff += Math.max(strike-St,0);
         }
     }
 
-    public double stepsRandomWalk(double dt) {
+    public double basicWeinerProcess(double dt) {
+        Random random = new Random();
         // sample from random Gaussian of mean 0 and sd 1
-        Random epsilon = new Random();
-        // return a step. value dz, size dt.
-        double dz = epsilon.nextGaussian()*Math.sqrt(dt);
+        double epsilon = random.nextGaussian();
+        double dz = epsilon*Math.sqrt(dt);
+        // return a step
         return dz;
     }
     // the benefit of this abstraction is that subclasses have their own implementation for this method.
     // but nothing else needs to be duplicated as they only differ at this point
-    abstract double simuluatePath(int N, double S0, double dt, double r, double sigma);
+    abstract double simulateRandomWalk(int N, double S0, double dt, double interest, double sigma);
 
     public double getCall(){
         return Math.exp(-interest*timeHorizon)* CallPayoff /paths;
@@ -52,7 +53,4 @@ public abstract class MonteCarlo implements PricingType {
     public double getPut(){
         return Math.exp(-interest*timeHorizon)* PutPayoff /paths;
     }
-
-
-
 }

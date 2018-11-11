@@ -1,24 +1,24 @@
 package com.adrian.ng;
 
 import java.util.HashMap;
+import java.util.concurrent.locks.StampedLock;
 
 /**
  * Created by Adrian on 12/10/2018.
  */
-public class EuropeanMonteCarlo extends MonteCarlo{
+public class EuropeanMonteCarlo extends MonteCarlo {
 
-    public EuropeanMonteCarlo(HashMap<String, Double> hashMap){
+    public EuropeanMonteCarlo(HashMap<String, Double> hashMap) {
         super(hashMap);
     }
 
-    public double simuluatePath(int N, double S0, double dt, double r, double sigma) {
-        // allocate memory to grid
-        double[] grid = new double[N];
-        grid[0] = S0;
-        for (int i = 1; i < N; i++){
-            double dz = stepsRandomWalk(dt);
-            grid[i] = grid[i-1] + (r*grid[i-1]*dt)+(sigma*grid[i-1]*dz);
+    public double simulateRandomWalk
+            (int N, double S0, double dt, double interest, double sigma) {
+        double St = S0;
+        for (int t = 1; t < N; t++) {
+            double dz = basicWeinerProcess(dt);
+            St = St + (interest * St * dt) + (sigma * St * dz);
         }
-        return grid[N-1];
+        return St;
     }
 }

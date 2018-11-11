@@ -1,5 +1,5 @@
-AmericanTree
-AsianMonteCarlo
-EuropeanTree
-EuropeanMonteCarlo
-BlackScholes
+American Binomial Tree
+Asian Monte Carlo
+European Binomial Tree
+European Monte Carlo
+Black Scholes
