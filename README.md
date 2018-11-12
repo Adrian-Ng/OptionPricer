@@ -1,9 +1,26 @@
 # OptionPricer
 Option Pricing: Monte Carlo, Black Scholes and Binomial Trees
 
-We have two .txt files
+We have a number of input `.txt` files and a number of `Java` classes.
 
-input.txt
+The main class is `OptionPricer`
+
+- pricingtypes.txt
+
+This first one enumerates the various ways in which we will price options:
+
+* American Binomial Tree
+* Asian Monte Carlo
+* European Binomial Tree
+* European Monte Carlo
+* Black Scholes
+
+
+
+- Binomial.txt
+- BlackScholes.txt
+- MonteCarlo.txt
+
 
   Handles the testing parameters:
   

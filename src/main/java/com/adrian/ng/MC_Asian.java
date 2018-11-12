@@ -4,7 +4,7 @@ import java.util.HashMap;
 /**
  * Created by Adrian on 12/10/2018.
  */
-public class MC_Asian extends MonteCarlo {
+public class MC_Asian extends MC_Abstract {
     public MC_Asian(HashMap<String, Double> hashMap){
         super(hashMap);
     }

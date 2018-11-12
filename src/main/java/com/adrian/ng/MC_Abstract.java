@@ -7,7 +7,7 @@ import java.util.Random;
  * Created by Adrian on 12/10/2018.
  */
 //https://stackoverflow.com/questions/1320745/abstract-class-in-java
-public abstract class MonteCarlo implements PricingType {
+public abstract class MC_Abstract implements PricingType {
     static final int paths;
     static {
         paths = 100000;                                 // number of random walks we will compute}
@@ -18,7 +18,7 @@ public abstract class MonteCarlo implements PricingType {
     private double CallPayoff;
     private double PutPayoff;
 
-    public MonteCarlo(HashMap<String, Double> hashMap) {
+    public MC_Abstract(HashMap<String, Double> hashMap) {
         double stock        = hashMap.get("stock");
         double strike       = hashMap.get("strike");
         double volatility   = hashMap.get("volatility");

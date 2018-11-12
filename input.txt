@@ -1,5 +1,0 @@
-stock,115
-strike,80
-volatility,0.48
-interest,0.07
-timehorizon,0.5
