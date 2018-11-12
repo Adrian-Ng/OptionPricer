@@ -5,10 +5,9 @@ import java.util.HashMap;
 /**
  * Created by Adrian on 14/10/2018.
  */
+public class TreeAmerican extends TreeAbstract {
 
-public class EuropeanTree extends BinomialTree{
-
-    public EuropeanTree(HashMap<String, Double> hashMap){
+    public TreeAmerican(HashMap<String, Double> hashMap){
         super(hashMap);
     }
 
@@ -21,7 +20,8 @@ public class EuropeanTree extends BinomialTree{
         // compute subsequent option prices
         for (int i = T-2;i >= 0; i--)
             for(int j = T-2; j >= 0; j--)
-                optionPrice[j][i] = Math.exp(-interest*dt)*((p*optionPrice[j][i+1])+(1-p)*optionPrice[j+1][i+1]);
+                // consider Early Exercise. What's larger: the calculated option price or the difference between the strike and share price?
+                optionPrice[j][i] = Math.max(Math.exp(-interest*dt)*((p*optionPrice[j][i+1])+(1-p)*optionPrice[j+1][i+1]),strike-stockPrice[j][i]);
         return optionPrice[0][0];
     }
 }

@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * Created by Adrian on 12/10/2018.
  */
-public abstract class BinomialTree implements PricingType{
+public abstract class TreeAbstract implements PricingType{
 
     private static int T = 3;
     private static double dt = 1.0/12.0;
@@ -15,7 +15,7 @@ public abstract class BinomialTree implements PricingType{
     private double p;
 
     // this is actually the constructor. What am i doing putting all this crap in here
-    public BinomialTree(HashMap<String, Double> hashMap) {
+    public TreeAbstract(HashMap<String, Double> hashMap) {
         double stock        = hashMap.get("stock");
         this.strike         = hashMap.get("strike");
         double volatility   = hashMap.get("volatility");

@@ -1,14 +1,12 @@
 package com.adrian.ng;
 
 import java.util.HashMap;
-import java.util.concurrent.locks.StampedLock;
-
 /**
  * Created by Adrian on 12/10/2018.
  */
-public class EuropeanMonteCarlo extends MonteCarlo {
+public class MC_Euro extends MonteCarlo {
 
-    public EuropeanMonteCarlo(HashMap<String, Double> hashMap) {
+    public MC_Euro(HashMap<String, Double> hashMap) {
         super(hashMap);
     }
 

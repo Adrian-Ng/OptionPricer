@@ -13,23 +13,22 @@ public class PricingFactory {
         this.hashMap = hashMap;
     }
 
-
     public PricingType getPricingType(String type){
 
         if(type == null)
             return null;
 
         if(type.equals("American Binomial Tree"))
-            return new AmericanTree(hashMap);
+            return new TreeAmerican(hashMap);
 
-        if(type.equals("Asian Monte Carlo"))
-            return new Asian(hashMap);
+        if(type.equals("MC_Asian Monte Carlo"))
+            return new MC_Asian(hashMap);
 
         if(type.equals("European Monte Carlo"))
-            return new EuropeanMonteCarlo(hashMap);
+            return new MC_Euro(hashMap);
 
         if(type.equals("European Binomial Tree"))
-            return new EuropeanTree(hashMap);
+            return new TreeEuropean(hashMap);
 
         if(type.equals("Black Scholes"))
             return new BlackScholes(hashMap);
