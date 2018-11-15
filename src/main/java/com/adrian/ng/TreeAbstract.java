@@ -30,36 +30,38 @@ public abstract class TreeAbstract implements PricingType{
     private double[][] stockPrices(double S0, double u, double d, int T) {
         double[][] stockPrice = new double[T][T];
         stockPrice[0][0] = S0;
-        // compute increase by u on the extreme side only
-        for (int i = 1; i < T; i++)
-            stockPrice[0][i] = stockPrice[0][i-1] * u;
-        // compute all subsequent decrease by d
-        for (int j = 1; j < T; j++)
-            for(int i = 1; i< T; i++)
-                stockPrice[j][i] = stockPrice[j-1][i-1] * d;
+        for (int hori = 1; hori < T; hori++) {
+            // compute increase by u on the extreme side only
+            stockPrice[0][hori] = stockPrice[0][hori - 1] * u;
+            for (int vert = 1; vert < T; vert++)
+                // compute all decrease by d
+                stockPrice[vert][hori] = stockPrice[vert - 1][hori - 1] * d;
+        }
         return stockPrice;
     }
 
-    private double setCall(double[][] stockPrice, double strike, double interest, double p, double dt, int T){
+    private double computeCall(double[][] stockPrice, double strike, double interest, double p, double dt, int T) {
         double[][] optionPrice = new double[T][T];
-        //compute option prices at maturity
-        for (int i = 0; i < T; i++)
-            optionPrice[i][T-1] = Math.max(stockPrice[i][T-1]-strike,0.0);
-        // compute subsequent option prices
-        for (int i = T-2;i >= 0; i--)
-            for(int j = T-2; j >= 0; j--)
-                optionPrice[j][i] = Math.exp(-interest*dt)*((p*optionPrice[j][i+1])+(1-p)*optionPrice[j+1][i+1]);
+        for(int hori = T-1; hori >= 0; hori--)
+            for(int vert = hori; vert >= 0; vert--){
+                // compute option prices at maturity
+                if (hori == T -1)
+                    optionPrice[vert][hori] = Math.max(stockPrice[vert][hori]-strike,   0.0);
+                // compute option prices prior to maturity
+                else
+                    optionPrice[vert][hori] = Math.exp(-interest*dt)*((p*optionPrice[vert][hori+1])+(1-p)*optionPrice[vert+1][hori+1]);
+            }
         return optionPrice[0][0];
     }
 
-    abstract public double setPut(double[][] stockPrice, double strike, double interest, double p, double dt, int T);
+    abstract public double computePut(double[][] stockPrice, double strike, double interest, double p, double dt, int T);
 
     public double getCall(){
-       double fCall = setCall(stockPrice, strike, interest, p, dt, T);
+       double fCall = computeCall(stockPrice, strike, interest, p, dt, T);
        return fCall;
     }
     public double getPut(){
-        double fPut = setPut(stockPrice, strike, interest, p, dt, T);
+        double fPut = computePut(stockPrice, strike, interest, p, dt, T);
         return fPut;
     }
 }

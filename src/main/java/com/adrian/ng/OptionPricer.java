@@ -5,10 +5,10 @@ package com.adrian.ng;
  */
 public class OptionPricer extends Utils {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         String[] Name = readTxt("pricingtypes.txt");
         PricingFactory factory = new PricingFactory();
-        for (String str : Name){
+        for (String str : Name) {
             PricingType pricing = factory.getPricingType(str);
 
             double call = pricing.getCall();
@@ -17,5 +17,4 @@ public class OptionPricer extends Utils {
             System.out.printf("%s\n\tCall:%.14f\n\tPut:%.14f\n", str, call, put);
         }
     }
-
 }

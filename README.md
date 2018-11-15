@@ -65,7 +65,7 @@ The European put can only be exercised at maturity. There is no difference betwe
 
 As such, the concrete classes must implement their own version of the following method:
 
-```java
+```
 public double setPut(double[][] stockPrice, double strike, double interest, double p, double dt, int T)
 ```
 
