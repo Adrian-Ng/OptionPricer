@@ -1,5 +1,6 @@
 package com.adrian.ng;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -25,9 +26,8 @@ public class TreeAmerican extends TreeAbstract {
                                                     Math.exp(-interest*dt)*((p*optionPrice[vert][hori+1])+(1-p)*optionPrice[vert+1][hori+1])
                                                 ,   strike-stockPrice[vert][hori]);
             }
+        for (int i = 0; i < T; i++)
+            System.out.println(Arrays.toString(optionPrice[i]));
         return optionPrice[0][0];
     }
-
-
-
 }

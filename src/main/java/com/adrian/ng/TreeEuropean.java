@@ -1,5 +1,6 @@
 package com.adrian.ng;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -24,7 +25,8 @@ public class TreeEuropean extends TreeAbstract {
                 else
                     optionPrice[vert][hori] = Math.exp(-interest*dt)*((p*optionPrice[vert][hori+1])+(1-p)*optionPrice[vert+1][hori+1]);
             }
+        for (int i = 0; i < T; i++)
+            System.out.println(Arrays.toString(optionPrice[i]));
         return optionPrice[0][0];
     }
-
 }

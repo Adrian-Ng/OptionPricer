@@ -1,5 +1,6 @@
 package com.adrian.ng;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -7,7 +8,7 @@ import java.util.HashMap;
  */
 public abstract class TreeAbstract implements PricingType{
 
-    private static int T = 3;
+    private static int T = 4;
     private static double dt = 1.0/12.0;
     private double interest;       // interest rate
     private double strike;
