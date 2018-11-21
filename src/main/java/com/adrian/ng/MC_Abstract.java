@@ -8,12 +8,14 @@ import java.util.Random;
  */
 //https://stackoverflow.com/questions/1320745/abstract-class-in-java
 public abstract class MC_Abstract implements PricingType {
-    static final int paths;
+    private static final int paths;                 // number of random walks we will compute
+    private static final int steps;                 // 6 months expressed in days. this is the number of steps.
     static {
-        paths = 100000;                                 // number of random walks we will compute}
+        paths = 100000;
+        steps = (int) Math.ceil(365.0/2.0);
     }
 
-    private static double interest;       // interest rate
+    private double interest;       // interest rate
     private double timeHorizon;
     private double CallPayoff;
     private double PutPayoff;
@@ -24,11 +26,11 @@ public abstract class MC_Abstract implements PricingType {
         double volatility   = hashMap.get("volatility");
         this.interest       = hashMap.get("interest");
         this.timeHorizon    = hashMap.get("timehorizon");
-        int N = (int) Math.ceil(365.0/2.0);                 // 6 months expressed in days. this is the number of steps.
-        double dt = timeHorizon/N;                          // size of the step where each step is 1 day
+
+        double dt = timeHorizon/ steps;                          // size of the step where each step is 1 day
         for (int i = 0; i < paths ; i ++) {
             // Return final projected Stock Price St = stock at time t
-            double St = simulateRandomWalk(N, stock, dt, interest, volatility);
+            double St = simulateRandomWalk(steps, stock, dt, interest, volatility);
             CallPayoff += Math.max(St-strike,0);
             PutPayoff += Math.max(strike-St,0);
         }
